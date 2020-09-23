@@ -14,3 +14,4 @@ CREATE TABLE employees (
   manager VARCHAR(100) NOT NULL,
   PRIMARY KEY (id)
 );
+
