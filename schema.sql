@@ -10,7 +10,6 @@ CREATE TABLE employees (
   last_name VARCHAR(100) NOT NULL,
   title VARCHAR(100) NOT NULL,
   department VARCHAR(100) NOT NULL,
-  salary INTEGER(100) NOT NULL,
   manager VARCHAR(100) NOT NULL,
   PRIMARY KEY (id)
 );
