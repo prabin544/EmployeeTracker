@@ -102,12 +102,12 @@ function addEmployee(){
   inquirer
   .prompt( [
     {
-    name: "first_name",
+    name: "firstName",
     type: "input",
     message: "Enter employee first name: "
     },
     {
-    name: "last_name",
+    name: "lastName",
     type: "input",
     message: "Enter employee last name: "
     },
@@ -128,9 +128,16 @@ function addEmployee(){
     },
   ]).then (function (answers){
       console.log(answers);
-      var query = "INSERT INTO employees (?) VALUES (?)";
-      connection.query(query, { first_name: answers[0].first_name }, { last_name: answers[1].last_name }, { manager: answers[2].manager }, 
-        { department: answers[3].department },{ title: answers[4].title }, function (err, res) {
+      var query = "INSERT INTO employees ? VALUES ?";
+      connection.query(query, 
+        { 
+          firstName: answers.firstName,
+          lastName: answers.lastName,
+          title: answers.title,
+          department: answers.department,
+          manager: answers.manager
+        }, 
+      function (err, res) {
           if (err) throw err;
           console.table(res)
       });
