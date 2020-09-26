@@ -52,6 +52,10 @@ function runsearch(){
         // using the switch case we pick a function we want to run for our next inquirer question
         addEmployee();
         break;
+        case "Remove employee":
+        // using the switch case we pick a function we want to run for our next inquirer question
+        removeEmployee();
+        break;
         //ending the connection if the user chooses to
         case "exit":
           connection.end();
@@ -112,9 +116,9 @@ function addEmployee(){
     message: "Enter employee last name: "
     },
     {
-    name: "manager",
-    type: "input",
-    message: "Enter manager name: "
+      name: "title",
+      type: "input",
+      message: "Enter employee title: "
     },
     {
     name: "department",
@@ -122,13 +126,14 @@ function addEmployee(){
     message: "Enter department name: "
     },
     {
-    name: "title",
-    type: "input",
-    message: "Enter employee title: "
-    },
+      name: "manager",
+      type: "input",
+      message: "Enter manager name: "
+    }
+    
   ]).then (function (answers){
       console.log(answers);
-      var query = "INSERT INTO employees ? VALUES ?";
+      var query = "INSERT INTO employees SET ?";
       connection.query(query, 
         { 
           firstName: answers.firstName,
@@ -139,7 +144,35 @@ function addEmployee(){
         }, 
       function (err, res) {
           if (err) throw err;
-          console.table(res)
+          employeeSearch();
+          runsearch();
       });
   });
+}
+
+function removeEmployee(){
+    inquirer
+    .prompt([
+      {
+        name: "firstName",
+        type: "input",
+        message: "Enter employee first name: "
+        },
+        {
+        name: "lastName",
+        type: "input",
+        message: "Enter employee last name: "
+        }
+      ]).then (function (answers){
+        var query = "DELETE FROM employees WHERE ?";
+        connection.query(query, 
+          { 
+            firstName: answers.firstName,
+            //lastName:answers.lastName
+          }, function (err, res) {
+          if (err) throw err;
+          employeeSearch();
+          runsearch();
+        });
+    });
 }
