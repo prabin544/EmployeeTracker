@@ -68,8 +68,7 @@ function runsearch() {
 }
 
 function employeeSearch() {
-  // connection.query("SELECT employees.id, employees.firstName, employees.lastName, role.title, role.salary, role.department_id FROM employees INNER JOIN role on employees.role_id = role.department_id;", function (err, res) {
-    connection.query("SELECT firstName, lastName, departmentName, role FROM employees JOIN departments on employees.departmentId = departments.departmentId JOIN roles on roles.departmentId = employees.departmentId", function (err, res) {
+  connection.query("SELECT firstName, lastName, departmentName, role FROM employees JOIN departments on employees.departmentId = departments.departmentId JOIN roles on roles.departmentId = employees.departmentId", function (err, res) {
     if (err) throw err;
     console.table(res);
     runsearch();
@@ -129,7 +128,6 @@ function addEmployee() {
         },
         function (err, res) {
           if (err) throw err;
-          employeeSearch();
           runsearch();
         });
     });
@@ -150,7 +148,6 @@ function addDepartment (){
         },
         function (err, res) {
           if (err) throw err;
-          deptSearch();
           runsearch();
         });
     });
@@ -193,7 +190,6 @@ function addRole (){
           },
           function (err, res) {
             if (err) throw err;
-            roleSearch();
             runsearch();
           });
       });
