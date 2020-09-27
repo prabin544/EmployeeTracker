@@ -1,11 +1,11 @@
-/* Seeds for SQL table. We haven't discussed this type of file yet */
-use employees_db;
+INSERT INTO departments VALUES (1, 'HR');
+INSERT INTO departments VALUES (2, 'IT');
+INSERT INTO departments VALUES (3, 'Payroll');
 
-INSERT INTO employees (firstName, lastName, title, department, manager)
-VALUES ("Prabin", "Singh", "Software Engineer", "AWM", "Ajay");
+INSERT INTO employees(firstName, lastName, departmentId) VALUES ('Harry', 'Potter', 1);
+INSERT INTO employees(firstName, lastName, departmentId) VALUES ('Jon', 'Clark',2);
+INSERT INTO employees(firstName, lastName, departmentId) VALUES ('cody', 'smith',3);
 
-INSERT INTO employees (firstName, lastName, title, department, manager)
-VALUES ("Harry", "Potter", "Software Engineer", "AWM", "Ajay");
-
-INSERT INTO employees (firstName, lastName, title, department, manager)
-VALUES ("Jack", "Ryan", "Software Engineer", "CCB", "Tom");
+INSERT INTO roles(role, salary, departmentId) VALUES ('Recruiter', 50000, 1);
+INSERT INTO roles(role, salary, departmentId) VALUES ('Tech Lead', 60000,2);
+INSERT INTO roles(role, salary, departmentId) VALUES ('Accountant', 40000,3)
